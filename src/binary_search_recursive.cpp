@@ -12,7 +12,6 @@ namespace assignment {
   }
 
   std::optional<int> BinarySearchRecursive::search(const std::vector<int>& arr, int search_elem, int start, int stop) const {
-
     // Tips:
     // 1. Рассмотрите базовые случаи выхода и рекурсии:
     //    1) индекс левого элемента стал больше индекса правого элемента
@@ -20,6 +19,17 @@ namespace assignment {
     // 2. Вызовите рекурсивный метод, изменив границы поиска
     //    в зависимости от неравенства между элементом посередине и целевого элемента
 
+    int medium = (start + stop)/2;
+    if (start <= stop) {
+      if (arr[medium] == search_elem) {
+        return medium;
+      }
+      if (search_elem > arr[medium]) {
+        return search(arr, search_elem, medium + 1, stop);
+      } else if (search_elem < arr[medium]) {
+        return search(arr, search_elem, start, medium - 1);
+      }
+    }
     return std::nullopt;
   }
 
